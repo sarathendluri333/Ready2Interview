@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Select Language</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  background:linear-gradient(120deg,#0f1115,#1b1f26);
+  font-family:Inter;
+  color:white;
+}
+
+.topbar{
+  height:70px;
+  background:#14171c;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 40px;
+}
+
+.logo{
+  color:#9fa8ff;
+  font-size:22px;
+  font-weight:700;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:40px;
+}
+
+h2{
+  color:#9fa8ff;
+  margin-bottom:30px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
+
+.card{
+  background:#1f232b;
+  padding:25px;
+  border-radius:15px;
+  text-align:center;
+  cursor:pointer;
+  transition:.3s;
+  border:1px solid #2b2f38;
+}
+
+.card:hover{
+  background:#2a2f38;
+  transform:translateY(-5px);
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="logo">Ready2Interview</div>
+  <div id="email"></div>
+</div>
+
+<div class="container">
+  <h2>Select Programming Language</h2>
+  <div class="grid">
+    <div class="card" onclick="selectLang('Java')">Java</div>
+    <div class="card" onclick="selectLang('Python')">Python</div>
+    <div class="card" onclick="selectLang('JavaScript')">JavaScript</div>
+    <div class="card" onclick="selectLang('C++')">C++</div>
+    <div class="card" onclick="selectLang('C#')">C#</div>
+    <div class="card" onclick="selectLang('Go')">Go</div>
+    <div class="card" onclick="selectLang('Ruby')">Ruby</div>
+    <div class="card" onclick="selectLang('Kotlin')">Kotlin</div>
+  </div>
+</div>
+
+<script>
+document.getElementById("email").innerText = localStorage.getItem("email");
+
+function selectLang(lang){
+  localStorage.setItem("language", lang);
+  window.location.href="role.html";
+}
+</script>
+
+</body>
+</html>

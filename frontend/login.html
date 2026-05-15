@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Ready2Interview</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #1c1c1c, #2b2b2b);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: #f5f5f5;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+  width: 900px;
+  height: 500px;
+  display: flex;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* ===== LEFT SIDE ===== */
+.left {
+  flex: 1;
+  background: #242424;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.left img {
+  width: 250px;
+  margin-bottom: 20px;
+}
+
+.left h1 {
+  font-size: 28px;
+  color: #60a5fa;
+  margin-bottom: 10px;
+}
+
+.left p {
+  color: #cbd5e1;
+  font-size: 15px;
+}
+
+/* ===== RIGHT SIDE ===== */
+.right {
+  flex: 1;
+  background: #2f2f2f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.form-box {
+  width: 100%;
+  max-width: 350px;
+}
+
+.form-box h2 {
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #444;
+  background: #3a3a3a;
+  color: white;
+  font-size: 14px;
+}
+
+input::placeholder {
+  color: #9ca3af;
+}
+
+input:focus {
+  outline: none;
+  border-color: #60a5fa;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #60a5fa;
+  color: #111;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: #3b82f6;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- LEFT SIDE -->
+  <div class="left">
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135755.png" alt="Student Illustration">
+    <h1>Ready2Interview</h1>
+    <p>Practice. Track. Improve.</p>
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="right">
+    <div class="form-box">
+      <h2>Login to your account</h2>
+      <input type="email" placeholder="Email" id="email">
+      <input type="password" placeholder="Password" id="password">
+      <button onclick="login()">Login</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  if (email && password) {
+    localStorage.setItem("email", email);
+    localStorage.setItem("streak", 2);
+    window.location.href = "dashboard.html";
+  } else {
+    alert("Please enter valid credentials");
+  }
+}
+</script>
+
+</body>
+</html>

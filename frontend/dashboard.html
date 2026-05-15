@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ready2Interview – Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  box-sizing:border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body{
+  margin:0;
+  background:linear-gradient(120deg,#1b1e24,#2a2f36);
+  color:white;
+}
+
+/* ===== Top Bar ===== */
+.topbar{
+  height:70px;
+  background:#1f2329;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 40px;
+  box-shadow:0 5px 20px rgba(0,0,0,.4);
+}
+
+.logo{
+  font-size:26px;
+  font-weight:700;
+  color:#7c7cff;
+}
+
+.userbox{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.logout{
+  background:#7c7cff;
+  border:none;
+  color:white;
+  padding:10px 18px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* ===== Layout ===== */
+.wrapper{
+  max-width:1200px;
+  margin:auto;
+  padding:40px;
+}
+
+/* ===== Welcome Card ===== */
+.welcome{
+  background:rgba(255,255,255,.05);
+  border-radius:20px;
+  padding:35px;
+  box-shadow:0 15px 40px rgba(0,0,0,.4);
+  margin-bottom:40px;
+}
+
+.welcome h1{
+  margin:0 0 15px;
+  font-size:32px;
+}
+
+.stat{
+  margin-top:10px;
+  color:#bbb;
+  font-size:16px;
+}
+
+/* ===== Feature Cards ===== */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:25px;
+}
+
+.card{
+  background:rgba(255,255,255,.05);
+  padding:30px;
+  border-radius:20px;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+.card:hover{
+  transform:translateY(-6px);
+  background:rgba(255,255,255,.08);
+}
+
+.card h3{
+  margin:15px 0 10px;
+  color:#8f8fff;
+}
+
+.card p{
+  color:#bbb;
+  font-size:14px;
+}
+
+/* ===== Responsive ===== */
+@media(max-width:900px){
+  .cards{
+    grid-template-columns:1fr 1fr;
+  }
+}
+@media(max-width:500px){
+  .cards{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== Top Bar ===== -->
+<div class="topbar">
+  <div class="logo">Ready2Interview</div>
+  <div class="userbox">
+    <div id="email"></div>
+    <button class="logout" onclick="logout()">Logout</button>
+  </div>
+</div>
+
+<!-- ===== Main Content ===== -->
+<div class="wrapper">
+
+  <div class="welcome">
+    <h1>Welcome Back 🎉</h1>
+    <div class="stat">👤 Logged in as: <span id="user"></span></div>
+    <div class="stat">🔥 Current Streak: <span id="streak">2</span></div>
+  </div>
+
+  <div class="cards">
+    <div class="card" onclick="go('home.html')">
+      <h3>💻 Select Language</h3>
+      <p>Choose your preferred programming language.</p>
+    </div>
+
+    <div class="card" onclick="go('role.html')">
+      <h3>🎯 Select Role</h3>
+      <p>Pick the job role you are preparing for.</p>
+    </div>
+
+    <div class="card" onclick="go('level.html')">
+      <h3>📊 Select Level</h3>
+      <p>Beginner, Intermediate or Advanced.</p>
+    </div>
+
+    <div class="card" onclick="go('progress.html')">
+      <h3>⏱ Progress & Timer</h3>
+      <p>Track your performance and readiness.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+if(!localStorage.getItem("email")){
+  window.location.href="index.html";
+}
+
+let email = localStorage.getItem("email");
+document.getElementById("email").innerText = email;
+document.getElementById("user").innerText = email;
+
+function go(page){
+  window.location.href = page;
+}
+
+function logout(){
+  localStorage.clear();
+  window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>

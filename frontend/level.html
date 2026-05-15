@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Select Level</title>
+<style>
+body{
+  margin:0;
+  background:linear-gradient(120deg,#0f1115,#1b1f26);
+  color:white;
+  font-family:Arial;
+}
+
+.topbar{
+  height:70px;
+  background:#14171c;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 40px;
+}
+
+.container{padding:40px;}
+h2{color:#9fa8ff;}
+
+.card{
+  background:#1f232b;
+  border:1px solid #2b2f38;
+  padding:30px;
+  border-radius:15px;
+  margin:20px 0;
+  cursor:pointer;
+}
+.card:hover{background:#2a2f38;}
+</style>
+</head>
+
+<body>
+<div class="topbar">
+  <div style="color:#9fa8ff;">Ready2Interview</div>
+  <div id="email"></div>
+</div>
+
+<div class="container">
+<h2>Select Difficulty Level</h2>
+<div class="card" onclick="selectLevel('Beginner')">Beginner</div>
+<div class="card" onclick="selectLevel('Intermediate')">Intermediate</div>
+<div class="card" onclick="selectLevel('Advanced')">Advanced</div>
+</div>
+
+<script>
+document.getElementById("email").innerText = localStorage.getItem("email");
+
+function selectLevel(level){
+  localStorage.setItem("level",level);
+  window.location.href="progress.html";
+}
+</script>
+</body>
+</html>

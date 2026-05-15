@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Interview Questions</title>
+<style>
+body{
+  margin:0;
+  background:linear-gradient(120deg,#0f1115,#1b1f26);
+  color:white;
+  font-family:Arial;
+}
+.topbar{
+  height:70px;
+  background:#14171c;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 40px;
+}
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:40px;
+}
+h2{color:#9fa8ff;}
+.box{
+  background:#1f232b;
+  border:1px solid #2b2f38;
+  padding:30px;
+  border-radius:20px;
+}
+.option{
+  background:#2a2f38;
+  padding:15px;
+  border-radius:10px;
+  margin:12px 0;
+  cursor:pointer;
+}
+.option:hover{background:#3a3f48;}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div style="color:#9fa8ff;">Ready2Interview</div>
+  <div id="email"></div>
+</div>
+
+<div class="container">
+  <div style="display:flex;justify-content:space-between;margin-bottom:15px;">
+    <div>⏱ Time Left: <span id="time">300</span> sec</div>
+    <div>Score: <span id="liveScore">0</span></div>
+  </div>
+
+  <h2 id="title"></h2>
+
+  <div class="box">
+    <p id="question"></p>
+    <div id="options"></div>
+  </div>
+</div>
+
+<script>
+document.getElementById("email").innerText = localStorage.getItem("email");
+
+let role = localStorage.getItem("role");
+let level = localStorage.getItem("level");
+document.getElementById("title").innerText = role + " - " + level + " Questions";
+
+let questions = [
+ {q:"What is Java?", options:["Programming language","Database","Browser","OS"], answer:0},
+ {q:"Which keyword creates an object in Java?", options:["class","new","this","create"], answer:1},
+ {q:"What does OOP stand for?", options:["Open Oriented Program","Object Oriented Programming","Only One Process","None"], answer:1},
+ {q:"Which is not Java feature?", options:["Object Oriented","Portable","Pointers","Secure"], answer:2},
+ {q:"What is JVM?", options:["Java Virtual Machine","Java Variable Model","Java Viewer","None"], answer:0},
+ {q:"Which collection uses key-value?", options:["List","Set","Map","Queue"], answer:2},
+ {q:"Which operator compares?", options:["=","==","!=","++"], answer:1},
+ {q:"Which method starts a thread?", options:["run","start","execute","init"], answer:1},
+ {q:"Which package is auto imported?", options:["java.util","java.io","java.lang","java.net"], answer:2},
+ {q:"Encapsulation means?", options:["Binding data","Inheritance","Loop","None"], answer:0}
+];
+
+let index=0, score=0;
+
+let time = 300;
+let timer = setInterval(()=>{
+  time--;
+  document.getElementById("time").innerText = time;
+  if(time<=0){
+    clearInterval(timer);
+    endTest();
+  }
+},1000);
+
+function loadQuestion(){
+  let q = questions[index];
+  document.getElementById("question").innerText = (index+1)+". "+q.q;
+  let html="";
+  q.options.forEach((o,i)=>{
+    html+=`<div class="option" onclick="check(${i})">${o}</div>`;
+  });
+  document.getElementById("options").innerHTML=html;
+}
+
+function check(i){
+  if(i===questions[index].answer){
+    score++;
+    document.getElementById("liveScore").innerText = score;
+  }
+  index++;
+  if(index<questions.length){
+    loadQuestion();
+  }else{
+    endTest();
+  }
+}
+
+function endTest(){
+  localStorage.setItem("lastScore", score);
+  window.location.href="result.html";
+}
+
+loadQuestion();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Select Role</title>
+<style>
+body{
+  margin:0;
+  background:linear-gradient(120deg,#0f1115,#1b1f26);
+  color:white;
+  font-family:Arial;
+}
+
+.topbar{
+  height:70px;
+  background:#14171c;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 40px;
+}
+
+h2{
+  color:#9fa8ff;
+  margin-bottom:30px;
+}
+
+.container{
+  padding:40px;
+  max-width:900px;
+  margin:auto;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.card{
+  background:#1f232b;
+  border:1px solid #2b2f38;
+  padding:25px;
+  border-radius:15px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card:hover{
+  background:#2a2f38;
+  transform:translateY(-4px);
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div style="color:#9fa8ff;font-size:22px;font-weight:700;">Ready2Interview</div>
+  <div id="email"></div>
+</div>
+
+<div class="container">
+  <h2>Select Your Interview Track</h2>
+
+  <div class="grid">
+    <div class="card" onclick="selectRole('Frontend Developer')">💻 Frontend Developer</div>
+    <div class="card" onclick="selectRole('Backend Developer')">🖥 Backend Developer</div>
+    <div class="card" onclick="selectRole('Full Stack Developer')">🌐 Full Stack Developer</div>
+    <div class="card" onclick="selectRole('Data Scientist')">📊 Data Scientist</div>
+    <div class="card" onclick="selectRole('DevOps Engineer')">⚙ DevOps Engineer</div>
+
+    <div class="card" onclick="selectRole('HR Round')">👔 HR Round</div>
+    <div class="card" onclick="selectRole('Aptitude')">🧮 Aptitude</div>
+    <div class="card" onclick="selectRole('Reasoning')">🧠 Reasoning</div>
+    <div class="card" onclick="selectRole('Logical Thinking')">🔍 Logical Thinking</div>
+  </div>
+</div>
+
+<script>
+document.getElementById("email").innerText = localStorage.getItem("email");
+
+function selectRole(role){
+  localStorage.setItem("role", role);
+  window.location.href = "level.html";
+}
+</script>
+
+</body>
+</html>

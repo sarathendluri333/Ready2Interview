@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ready2Interview | Login</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  font-family:Arial;
+  background:linear-gradient(120deg,#0f1115,#1b1f26);
+  color:white;
+}
+
+.left{
+  flex:1;
+  background: url("./anime.png") center / contain no-repeat;
+  background-color:#111;
+}
+
+.right{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.card{
+  width:350px;
+  background:#1f232b;
+  padding:40px;
+  border-radius:20px;
+}
+
+h2{
+  color:#9fa8ff;
+  text-align:center;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  margin:12px 0;
+  border:none;
+  border-radius:8px;
+  background:#2b2f38;
+  color:white;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  background:#6aa9ff;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+p{text-align:center;}
+a{color:#9fa8ff;text-decoration:none;}
+</style>
+</head>
+
+<body>
+
+<div class="left"></div>
+
+<div class="right">
+  <div class="card">
+    <h2>Login</h2>
+
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+
+    <button onclick="login()">Login</button>
+
+    <p>New user? <a href="signup.html">Create account</a></p>
+  </div>
+</div>
+
+<script>
+async function login(){
+  let email=document.getElementById("email").value;
+  let password=document.getElementById("password").value;
+
+  let res=await fetch("http://localhost:3000/login",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({email,password})
+  });
+
+  let data=await res.json();
+
+  if(res.ok){
+    localStorage.setItem("email",email);
+    localStorage.setItem("streak",data.streak);
+    window.location.href="dashboard.html";
+  }else{
+    alert(data.message);
+  }
+}
+</script>
+
+</body>
+</html>

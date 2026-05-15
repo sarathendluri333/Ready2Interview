@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Select Language</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Select Programming Language</h1>
+    <p>Choose the language you want to practice</p>
+
+    <div class="features">
+      <button onclick="selectLanguage('C')">C</button>
+      <button onclick="selectLanguage('C++')">C++</button>
+      <button onclick="selectLanguage('Java')">Java</button>
+      <button onclick="selectLanguage('Python')">Python</button>
+      <button onclick="selectLanguage('JavaScript')">JavaScript</button>
+    </div>
+  </div>
+
+  <script>
+    function selectLanguage(lang) {
+      localStorage.setItem("language", lang);   // save language
+      window.location.href = "roles.html";      // go to roles
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Progress</title>
+<style>
+body{
+  margin:0;
+  background:linear-gradient(120deg,#0f1115,#1b1f26);
+  color:white;
+  font-family:Arial;
+}
+.topbar{
+  height:70px;
+  background:#14171c;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 40px;
+}
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:40px;
+}
+h2{color:#9fa8ff;}
+.box{
+  background:#1f232b;
+  border:1px solid #2b2f38;
+  padding:30px;
+  border-radius:20px;
+}
+.start-btn{
+  margin-top:25px;
+  background:#9fa8ff;
+  border:none;
+  padding:14px 30px;
+  border-radius:10px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div style="color:#9fa8ff;">Ready2Interview</div>
+  <div id="email"></div>
+</div>
+
+<div class="container">
+<h2>Your Interview Setup</h2>
+
+<div class="box">
+  <p>💻 Language: <span id="lang"></span></p>
+  <p>🎯 Role: <span id="role"></span></p>
+  <p>📊 Level: <span id="level"></span></p>
+  <p>🏆 Last Score: <span id="score"></span></p>
+  <p>🔥 Streak: <span id="streak"></span></p>
+  <p>🏆 Leaderboard Rank: <span id="rank"></span></p>
+
+  <button class="start-btn" onclick="start()">Start Interview</button>
+</div>
+</div>
+
+<script>
+document.getElementById("email").innerText = localStorage.getItem("email");
+document.getElementById("lang").innerText = localStorage.getItem("language");
+document.getElementById("role").innerText = localStorage.getItem("role");
+document.getElementById("level").innerText = localStorage.getItem("level");
+document.getElementById("score").innerText = localStorage.getItem("lastScore")||0;
+document.getElementById("streak").innerText = localStorage.getItem("streak")||0;
+
+let leaderboard = JSON.parse(localStorage.getItem("leaderboard")||"[]");
+let email = localStorage.getItem("email");
+let rank = leaderboard.findIndex(x=>x.user===email)+1;
+document.getElementById("rank").innerText = rank>0?rank:"—";
+
+function start(){
+  window.location.href="questions.html";
+}
+</script>
+
+</body>
+</html>

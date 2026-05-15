@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Result</title>
+<style>
+body{
+  margin:0;
+  background:linear-gradient(120deg,#0f1115,#1b1f26);
+  color:white;
+  text-align:center;
+  font-family:Arial;
+}
+.box{
+  margin-top:80px;
+  background:#1f232b;
+  padding:40px;
+  border-radius:20px;
+  border:1px solid #2b2f38;
+  display:inline-block;
+}
+h1{color:#9fa8ff;}
+button{
+  margin-top:20px;
+  padding:12px 25px;
+  background:#9fa8ff;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h1>Interview Result</h1>
+  <p>Score: <span id="score"></span></p>
+  <p>🔥 Streak: <span id="streak"></span></p>
+
+  <h3 style="color:#9fa8ff;">🏆 Leaderboard</h3>
+  <div id="board"></div>
+
+  <button onclick="go()">Back to Dashboard</button>
+</div>
+
+<script>
+let score = localStorage.getItem("lastScore");
+document.getElementById("score").innerText = score;
+
+// ---- Streak ----
+let today = new Date().toDateString();
+let lastDay = localStorage.getItem("lastDay");
+let streak = Number(localStorage.getItem("streak")||0);
+
+if(lastDay !== today){
+  streak++;
+  localStorage.setItem("streak", streak);
+  localStorage.setItem("lastDay", today);
+}
+document.getElementById("streak").innerText = localStorage.getItem("streak");
+
+// ---- Leaderboard ----
+let email = localStorage.getItem("email");
+let leaderboard = JSON.parse(localStorage.getItem("leaderboard")||"[]");
+
+leaderboard.push({user:email, score:Number(score)});
+leaderboard.sort((a,b)=>b.score-a.score);
+leaderboard = leaderboard.slice(0,5);
+localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+
+let html="";
+leaderboard.forEach((p,i)=>{
+  html += `<p>${i+1}. ${p.user} - ${p.score}</p>`;
+});
+document.getElementById("board").innerHTML = html;
+
+function go(){
+  window.location.href="dashboard.html";
+}
+</script>
+
+</body>
+</html>
